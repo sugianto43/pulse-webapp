@@ -30,11 +30,11 @@
 
 ## Fase 2 — Screener Saham
 
-- [ ] Buat endpoint `/api/screen`, support preset (oversold, breakout, dll) + custom criteria.
-- [ ] Tambahkan caching hasil screening (Redis atau in-memory dengan TTL) — hindari hit Yahoo Finance berulang.
-- [ ] Buat halaman `/screen` dengan filter UI (dropdown preset + input custom).
-- [ ] Buat tabel hasil sortable/filterable pakai `@tanstack/table` (sort by RSI, PE, volume, dst).
-- [ ] Tambahkan pilihan universe (LQ45/IDX80/Popular/All) dengan indikasi waktu proses.
+- [x] Buat endpoint `/api/screen`, support preset (oversold, breakout, dll) + custom criteria. — reuse `StockScreener` dari Pulse-CLI core.
+- [x] Tambahkan caching hasil screening (Redis atau in-memory dengan TTL) — hindari hit Yahoo Finance berulang. — in-memory TTL 1 jam (`PULSE_WEB_SCREEN_CACHE_TTL`).
+- [x] Buat halaman `/screen` dengan filter UI (dropdown preset + input custom). — `frontend/src/app/screen/page.tsx`.
+- [x] Buat tabel hasil sortable/filterable pakai `@tanstack/table` (sort by RSI, PE, volume, dst). — `components/ScreenerTable.tsx`.
+- [x] Tambahkan pilihan universe (LQ45/IDX80/Popular/All) dengan indikasi waktu proses. — dropdown + label estimasi kecepatan per universe, elapsed time ditampilkan setelah scan.
 
 **DoD:** User bisa screening saham LQ45 kriteria oversold dalam <5 detik, hasil di tabel yang bisa di-sort.
 
