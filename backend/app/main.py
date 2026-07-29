@@ -44,6 +44,6 @@ async def analyze(ticker: str, period: str = "1y"):
 
     return {
         "ticker": stock.ticker,
-        "price": stock.model_dump(mode="json", exclude={"history"}),
+        "price": stock.model_dump(mode="json"),
         "indicators": indicators.model_dump(mode="json"),
     }
