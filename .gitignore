@@ -1,0 +1,24 @@
+# Upstream source, cloned separately (own repo/history) — not part of this repo
+/Pulse-CLI/
+
+# Python (backend)
+backend/.venv/
+**/__pycache__/
+*.pyc
+
+# Node (frontend)
+frontend/node_modules/
+frontend/.next/
+frontend/out/
+frontend/*.tsbuildinfo
+frontend/next-env.d.ts
+
+# Env files — keep .env.example, ignore real secrets
+.env
+.env.local
+.env.*.local
+!.env.example
+
+# OS / editor
+.DS_Store
+*.log
