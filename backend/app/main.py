@@ -7,7 +7,7 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from app.routers import analyze, screen
+from app.routers import analyze, plan, screen
 from app.settings import CORS_ORIGINS, THREAD_POOL_WORKERS
 
 
@@ -30,6 +30,7 @@ app.add_middleware(
 )
 
 app.include_router(analyze.router)
+app.include_router(plan.router)
 app.include_router(screen.router)
 
 
