@@ -127,23 +127,16 @@ export class ApiError extends Error {
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
-export async function analyzeTicker(ticker: string): Promise<AnalyzeResponse> {
-  const clean = ticker.trim();
-  if (!clean) {
-    throw new ApiError(400, "Masukkan kode ticker terlebih dahulu.");
-  }
-
+async function apiFetch<T>(path: string, fallbackMessage: string): Promise<T> {
   let res: Response;
   try {
-    res = await fetch(`${API_URL}/api/analyze/${encodeURIComponent(clean)}`, {
-      cache: "no-store",
-    });
+    res = await fetch(`${API_URL}${path}`, { cache: "no-store" });
   } catch {
     throw new ApiError(503, "Tidak bisa menghubungi server. Coba lagi nanti.");
   }
 
   if (!res.ok) {
-    let detail = `Gagal memuat data untuk "${clean}".`;
+    let detail = fallbackMessage;
     try {
       const body = await res.json();
       if (typeof body?.detail === "string") detail = body.detail;
@@ -156,12 +149,23 @@ export async function analyzeTicker(ticker: string): Promise<AnalyzeResponse> {
   return res.json();
 }
 
-export async function getScreenPresets(): Promise<ScreenPresetsResponse> {
-  const res = await fetch(`${API_URL}/api/screen/presets`, { cache: "no-store" });
-  if (!res.ok) {
-    throw new ApiError(res.status, "Gagal memuat daftar preset screener.");
+export async function analyzeTicker(ticker: string): Promise<AnalyzeResponse> {
+  const clean = ticker.trim();
+  if (!clean) {
+    throw new ApiError(400, "Masukkan kode ticker terlebih dahulu.");
   }
-  return res.json();
+
+  return apiFetch<AnalyzeResponse>(
+    `/api/analyze/${encodeURIComponent(clean)}`,
+    `Gagal memuat data untuk "${clean}".`
+  );
+}
+
+export async function getScreenPresets(): Promise<ScreenPresetsResponse> {
+  return apiFetch<ScreenPresetsResponse>(
+    "/api/screen/presets",
+    "Gagal memuat daftar preset screener."
+  );
 }
 
 export async function screenStocks(params: {
@@ -175,23 +179,5 @@ export async function screenStocks(params: {
   if (params.criteria) query.set("criteria", params.criteria);
   if (params.limit) query.set("limit", String(params.limit));
 
-  let res: Response;
-  try {
-    res = await fetch(`${API_URL}/api/screen?${query.toString()}`, { cache: "no-store" });
-  } catch {
-    throw new ApiError(503, "Tidak bisa menghubungi server. Coba lagi nanti.");
-  }
-
-  if (!res.ok) {
-    let detail = "Gagal menjalankan screening.";
-    try {
-      const body = await res.json();
-      if (typeof body?.detail === "string") detail = body.detail;
-    } catch {
-      // ignore, use default message
-    }
-    throw new ApiError(res.status, detail);
-  }
-
-  return res.json();
+  return apiFetch<ScreenResponse>(`/api/screen?${query.toString()}`, "Gagal menjalankan screening.");
 }
