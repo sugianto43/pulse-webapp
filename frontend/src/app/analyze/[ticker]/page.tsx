@@ -1,3 +1,4 @@
+import Link from "next/link";
 import IndicatorPanel from "@/components/IndicatorPanel";
 import PriceChart from "@/components/PriceChart";
 import SearchBox from "@/components/SearchBox";
@@ -41,6 +42,12 @@ export default async function AnalyzePage({
               {price.ticker}
             </h1>
             {price.name && <p className="text-sm text-zinc-500">{price.name}</p>}
+            <Link
+              href={`/plan/${price.ticker}`}
+              className="mt-1 inline-block text-sm text-black underline decoration-zinc-300 hover:decoration-zinc-500 dark:text-zinc-50"
+            >
+              Lihat Trading Plan →
+            </Link>
           </div>
           <div className="text-right">
             <div className="text-2xl font-semibold text-black dark:text-zinc-50">

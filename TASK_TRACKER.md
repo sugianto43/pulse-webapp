@@ -42,9 +42,9 @@
 
 ## Fase 3 — Trading Plan Generator
 
-- [ ] Buat endpoint `/api/plan/{ticker}` dengan parameter account size. Output: TP1/TP2/TP3, SL, position sizing.
-- [ ] Buat komponen trading plan card — visual dengan progress bar R:R.
-- [ ] Tambahkan input account size dan risk tolerance (default 2%).
+- [x] Buat endpoint `/api/plan/{ticker}` dengan parameter account size. Output: TP1/TP2/TP3, SL, position sizing. — reuse `TradingPlanGenerator` dari Pulse-CLI core.
+- [x] Buat komponen trading plan card — visual dengan progress bar R:R. — `components/TradingPlanCard.tsx`.
+- [x] Tambahkan input account size dan risk tolerance (default 2%). — `components/TradingPlanForm.tsx`, default Rp100jt / 2%.
 
 **DoD:** User input ticker + modal, dapat trading plan visual lengkap dengan risk/reward yang mudah dibaca.
 
