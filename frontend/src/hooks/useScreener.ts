@@ -1,70 +1,65 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import {
-  ApiError,
-  getScreenPresets,
-  screenStocks,
-  type ScreenPresetInfo,
-  type ScreenResult,
-} from "@/lib/api";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { useRef, useState } from "react";
+import { ApiError, getScreenPresets, screenStocks } from "@/lib/api";
 
 export function useScreener() {
   const [universe, setUniverse] = useState("lq45");
-  const [presets, setPresets] = useState<ScreenPresetInfo[]>([]);
   const [preset, setPreset] = useState("oversold");
   const [useCustom, setUseCustom] = useState(false);
   const [criteria, setCriteria] = useState("");
-
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const [results, setResults] = useState<ScreenResult[] | null>(null);
   const [elapsedMs, setElapsedMs] = useState<number | null>(null);
-  const [cached, setCached] = useState(false);
+  const startRef = useRef(0);
 
-  useEffect(() => {
-    getScreenPresets()
-      .then((data) => setPresets(data.presets))
-      .catch(() => setPresets([]));
-  }, []);
+  const presetsQuery = useQuery({
+    queryKey: ["screen-presets"],
+    queryFn: getScreenPresets,
+    staleTime: Infinity,
+  });
 
-  async function runScreen() {
-    setLoading(true);
-    setError(null);
-    const start = performance.now();
-    try {
-      const data = await screenStocks({
-        universe,
-        preset: useCustom ? undefined : preset,
-        criteria: useCustom ? criteria : undefined,
-        limit: 30,
-      });
-      setResults(data.results);
-      setCached(data.cached);
-    } catch (err) {
-      setResults(null);
-      setError(err instanceof ApiError ? err.message : "Terjadi kesalahan tak terduga.");
-    } finally {
-      setElapsedMs(performance.now() - start);
-      setLoading(false);
-    }
+  const screenMutation = useMutation({
+    mutationFn: (vars: { universe: string; preset?: string; criteria?: string }) =>
+      screenStocks({ ...vars, limit: 30 }),
+    onMutate: () => {
+      startRef.current = performance.now();
+    },
+    onSettled: () => {
+      setElapsedMs(performance.now() - startRef.current);
+    },
+  });
+
+  function runScreen() {
+    screenMutation.mutate({
+      universe,
+      preset: useCustom ? undefined : preset,
+      criteria: useCustom ? criteria : undefined,
+    });
+  }
+
+  let error: string | null = null;
+  if (screenMutation.isError) {
+    error =
+      screenMutation.error instanceof ApiError
+        ? screenMutation.error.message
+        : "Terjadi kesalahan tak terduga.";
   }
 
   return {
     universe,
     setUniverse,
-    presets,
+    presets: presetsQuery.data?.presets ?? [],
     preset,
     setPreset,
     useCustom,
     setUseCustom,
     criteria,
     setCriteria,
-    loading,
+    loading: screenMutation.isPending,
     error,
-    results,
+    results: screenMutation.isError ? null : (screenMutation.data?.results ?? null),
     elapsedMs,
-    cached,
+    cached: screenMutation.data?.cached ?? false,
     runScreen,
   };
 }
