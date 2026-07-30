@@ -52,10 +52,10 @@
 
 ## Fase 4 — AI Insight (bisa paralel dengan Fase 2/3)
 
-- [ ] Buat API route Next.js untuk panggil LLM langsung, server-side, API key aman (`/api/ai-insight`).
-- [ ] Integrasikan insight ke halaman `/analyze/[ticker]`: kirim data teknikal → LLM → tampilkan narasi otomatis.
-- [ ] Tambahkan rate limiting/caching insight per ticker per jam — kontrol biaya API.
-- [ ] Tambahkan disclaimer AI yang jelas di UI ("Bukan nasihat keuangan") di setiap output AI.
+- [x] Buat API route Next.js untuk panggil LLM langsung, server-side, API key aman (`/api/ai-insight`). — pakai Claude Haiku 4.5 (kontrol biaya), `ANTHROPIC_API_KEY` server-side only.
+- [x] Integrasikan insight ke halaman `/analyze/[ticker]`: kirim data teknikal → LLM → tampilkan narasi otomatis. — `AiInsightCard`, auto-fetch via TanStack Query.
+- [x] Tambahkan rate limiting/caching insight per ticker per jam — kontrol biaya API. — `lib/ttl-cache.ts`, TTL 1 jam per ticker di route handler.
+- [x] Tambahkan disclaimer AI yang jelas di UI ("Bukan nasihat keuangan") di setiap output AI. — tampil di bawah tiap narasi AI.
 
 **DoD:** Halaman analisis saham menampilkan ringkasan naratif AI otomatis, biaya API terkendali.
 

@@ -3,6 +3,7 @@ import SearchBox from "@/components/SearchBox";
 import { analyzeTicker } from "@/features/analyze/api";
 import IndicatorPanel from "@/features/analyze/components/IndicatorPanel";
 import PriceChart from "@/features/analyze/components/PriceChart";
+import AiInsightCard from "@/features/ai-insight/components/AiInsightCard";
 import { ApiError } from "@/lib/api-client";
 
 export default async function AnalyzePage({ params }: { params: Promise<{ ticker: string }> }) {
@@ -65,6 +66,25 @@ export default async function AnalyzePage({ params }: { params: Promise<{ ticker
 
         <div className="mt-6 rounded-lg border border-zinc-200 bg-white p-4 dark:border-zinc-800 dark:bg-zinc-900">
           <IndicatorPanel indicators={indicators} currentPrice={price.current_price} />
+        </div>
+
+        <div className="mt-6">
+          <AiInsightCard
+            request={{
+              ticker: price.ticker,
+              current_price: price.current_price,
+              change_percent: price.change_percent,
+              trend: indicators.trend,
+              signal: indicators.signal,
+              rsi_14: indicators.rsi_14,
+              macd: indicators.macd,
+              macd_signal: indicators.macd_signal,
+              sma_20: indicators.sma_20,
+              sma_50: indicators.sma_50,
+              support_1: indicators.support_1,
+              resistance_1: indicators.resistance_1,
+            }}
+          />
         </div>
       </main>
     </div>
