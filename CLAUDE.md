@@ -42,6 +42,10 @@ Example (`features/screener/`): `useScreenPresetsQuery.ts` + `useScreenMutation.
 
 Don't collapse these into one hook per feature — splitting query/mutation from page-state keeps each hook single-purpose and makes the query logic reusable if a second page ever needs the same data.
 
+## Exception: AI Insight talks to the LLM directly, not through the backend
+
+`features/ai-insight/` + `app/api/ai-insight/route.ts` is the one feature that does **not** go through FastAPI/Pulse-CLI — per the PRD architecture, Next.js calls Claude directly server-side (route handler) so the Anthropic API key never reaches the client. `features/ai-insight/api.ts` deliberately calls this same-origin route with a bare `axios.post()`, not through `lib/api-client.ts` (which is baseURL'd to the FastAPI backend). Model is `claude-haiku-4-5` — this is a short summarization task, not reasoning-heavy, and cost control was an explicit PRD requirement. Response caching (`lib/ttl-cache.ts`, 1h TTL) lives in the route handler for the same reason `backend/app/cache.py` exists — don't rebuild it per-feature if another route needs server-side caching.
+
 ## Backend structure
 
 ```
