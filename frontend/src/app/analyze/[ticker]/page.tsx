@@ -51,6 +51,12 @@ export default async function AnalyzePage({ params }: { params: Promise<{ ticker
               >
                 Lihat Skor SAPTA →
               </Link>
+              <Link
+                href={`/broker/${price.ticker}`}
+                className="inline-block text-sm text-black underline decoration-zinc-300 hover:decoration-zinc-500 dark:text-zinc-50"
+              >
+                Lihat Broker Flow →
+              </Link>
             </div>
           </div>
           <div className="text-right">

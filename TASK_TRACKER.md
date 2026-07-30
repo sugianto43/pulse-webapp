@@ -74,11 +74,11 @@
 
 ## Fase 6 — Bandarmology (Broker Flow) — kondisional
 
-- [ ] **Keputusan awal dulu:** evaluasi solusi autentikasi Stockbit non-manual per-user. Putuskan: proxy internal, atau drop fitur ini untuk v1 (risiko besar, lihat Section 7 PRD).
-- [ ] Buat endpoint `/api/broker/{ticker}` — data broker summary + bandar detector.
-- [ ] Buat halaman visualisasi broker flow + pattern alerts (chart komposisi broker, alert list).
+- [x] **Keputusan awal dulu:** evaluasi solusi autentikasi Stockbit non-manual per-user. Putuskan: proxy internal, atau drop fitur ini untuk v1 (risiko besar, lihat Section 7 PRD). — pakai manual token (`STOCKBIT_TOKEN`, expired ~24 jam), sesuai rekomendasi resmi Pulse-CLI sendiri (`.env.example` Option 1). Auto-login (Playwright) ditolak — risiko ban akun ToS violation. User pakai akun Stockbit sampingan untuk mitigasi.
+- [x] Buat endpoint `/api/broker/{ticker}` — data broker summary + bandar detector. — reuse `BandarmologyEngine`, 503 graceful kalau token belum/expired.
+- [x] Buat halaman visualisasi broker flow + pattern alerts (chart komposisi broker, alert list). — `BrokerScoreCards`, `BrokerCompositionBar`, `BrokerPatternAlerts` di `/broker/[ticker]`, link ditambahkan dari halaman analyze.
 
-**DoD:** Kondisional — tergantung hasil evaluasi keputusan auth Stockbit.
+**DoD:** Kondisional — tergantung hasil evaluasi keputusan auth Stockbit. Selesai dengan strategi manual-token.
 
 ---
 

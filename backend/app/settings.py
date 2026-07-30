@@ -2,6 +2,16 @@
 
 import os
 
+from dotenv import load_dotenv
+
+# Load backend/.env into the actual process environment. Without this, only
+# vars exported in the shell before `uvicorn` starts are visible to os.getenv
+# — .env.example was previously just documentation, not something read at
+# runtime. Also required for STOCKBIT_TOKEN (Pulse-CLI's stockbit.py reads it
+# via plain os.getenv, not through pydantic-settings' own .env loading, which
+# only populates its own model and never touches os.environ).
+load_dotenv()
+
 
 def _split_origins(raw: str) -> list[str]:
     return [origin.strip() for origin in raw.split(",") if origin.strip()]
