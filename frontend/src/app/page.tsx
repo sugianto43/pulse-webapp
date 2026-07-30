@@ -10,7 +10,7 @@ export default function Home() {
     <div className="flex min-h-screen flex-col items-center justify-center p-6">
       <main className="w-full max-w-md text-center">
         <div className="mb-2 flex items-center justify-center gap-3">
-          <Logo className="h-11 w-11" />
+          <Logo className="h-11 w-11" gradient />
           <h1 className="animate-gradient-text bg-linear-to-r from-emerald-500 via-blue-500 to-purple-500 bg-clip-text text-5xl font-bold tracking-tight text-transparent dark:from-emerald-400 dark:via-blue-400 dark:to-purple-400">
             Radar Saham
           </h1>
