@@ -38,12 +38,20 @@ export default async function AnalyzePage({ params }: { params: Promise<{ ticker
           <div>
             <h1 className="text-2xl font-semibold text-black dark:text-zinc-50">{price.ticker}</h1>
             {price.name && <p className="text-sm text-zinc-500">{price.name}</p>}
-            <Link
-              href={`/plan/${price.ticker}`}
-              className="mt-1 inline-block text-sm text-black underline decoration-zinc-300 hover:decoration-zinc-500 dark:text-zinc-50"
-            >
-              Lihat Trading Plan →
-            </Link>
+            <div className="mt-1 flex flex-wrap gap-x-4 gap-y-1">
+              <Link
+                href={`/plan/${price.ticker}`}
+                className="inline-block text-sm text-black underline decoration-zinc-300 hover:decoration-zinc-500 dark:text-zinc-50"
+              >
+                Lihat Trading Plan →
+              </Link>
+              <Link
+                href={`/sapta/${price.ticker}`}
+                className="inline-block text-sm text-black underline decoration-zinc-300 hover:decoration-zinc-500 dark:text-zinc-50"
+              >
+                Lihat Skor SAPTA →
+              </Link>
+            </div>
           </div>
           <div className="text-right">
             <div className="text-2xl font-semibold text-black dark:text-zinc-50">
