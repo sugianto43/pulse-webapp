@@ -10,7 +10,7 @@ export default function SaptaScanPage() {
   const scan = useSaptaScan();
 
   return (
-    <div className="min-h-screen bg-zinc-50 p-4 sm:p-6 dark:bg-black">
+    <div className="min-h-screen p-4 sm:p-6">
       <main className="mx-auto max-w-4xl">
         <h1 className="mb-1 text-2xl font-semibold text-black dark:text-zinc-50">SAPTA Scan</h1>
         <p className="mb-6 text-sm text-zinc-500">
@@ -35,7 +35,7 @@ export default function SaptaScanPage() {
           )}
 
           {scan.error && (
-            <div className="rounded-lg border border-red-200 bg-red-50 p-4 text-red-700 dark:border-red-900 dark:bg-red-950 dark:text-red-300">
+            <div className="rounded-2xl border border-red-200/50 bg-red-50/80 p-4 text-red-700 backdrop-blur-xl dark:border-red-900/50 dark:bg-red-950/50 dark:text-red-300">
               {scan.error}
             </div>
           )}

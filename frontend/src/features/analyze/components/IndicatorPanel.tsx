@@ -79,7 +79,7 @@ export default function IndicatorPanel({
         {items.map((item) => (
           <div
             key={item.label}
-            className="rounded-lg border border-zinc-200 p-3 dark:border-zinc-800"
+            className="rounded-xl border border-black/5 bg-white/40 p-3 dark:border-white/10 dark:bg-white/5"
           >
             <div className="text-xs text-zinc-500">{item.label}</div>
             <div className="mt-1 flex items-center justify-between gap-2">

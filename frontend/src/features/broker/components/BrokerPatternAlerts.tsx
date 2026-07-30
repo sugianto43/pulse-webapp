@@ -16,7 +16,7 @@ export default function BrokerPatternAlerts({ alerts }: { alerts: PatternAlert[]
       {alerts.map((alert) => (
         <li
           key={`${alert.pattern}-${alert.description}`}
-          className="flex items-start gap-2 rounded-lg border border-zinc-200 p-3 text-sm dark:border-zinc-800"
+          className="flex items-start gap-2 rounded-xl border border-black/5 bg-white/40 p-3 text-sm dark:border-white/10 dark:bg-white/5"
         >
           <span
             className={`shrink-0 rounded-full px-2 py-0.5 text-xs whitespace-nowrap ${SEVERITY_COLOR[alert.severity]}`}
