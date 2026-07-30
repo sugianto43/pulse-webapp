@@ -1,9 +1,11 @@
 "use client";
 
+import GlossaryAccordion from "@/components/GlossaryAccordion";
 import ScreenerFilters from "@/features/screener/components/ScreenerFilters";
 import ScreenerTable from "@/features/screener/components/ScreenerTable";
 import ScreenerTableSkeleton from "@/features/screener/components/ScreenerTableSkeleton";
 import { useScreener } from "@/features/screener/hooks/useScreener";
+import { MACD_TERM, RSI_TERM, SCREENER_SCORE_TERM, VOLUME_RATIO_TERM } from "@/lib/glossary-terms";
 
 export default function ScreenPage() {
   const screener = useScreener();
@@ -47,6 +49,13 @@ export default function ScreenPage() {
           {!screener.error && screener.loading && !screener.results && <ScreenerTableSkeleton />}
 
           {!screener.error && screener.results && <ScreenerTable data={screener.results} />}
+        </div>
+
+        <div className="mt-6">
+          <GlossaryAccordion
+            title="Istilah Screener"
+            terms={[RSI_TERM, MACD_TERM, VOLUME_RATIO_TERM, SCREENER_SCORE_TERM]}
+          />
         </div>
       </main>
     </div>
