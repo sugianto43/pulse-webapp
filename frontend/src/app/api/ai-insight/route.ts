@@ -1,13 +1,13 @@
-import Anthropic from "@anthropic-ai/sdk";
+import { GoogleGenAI } from "@google/genai";
 import { NextResponse, type NextRequest } from "next/server";
 import type { AiInsightRequest } from "@/features/ai-insight/types";
 import { TtlCache } from "@/lib/ttl-cache";
 
-// Server-only: ANTHROPIC_API_KEY is never exposed to the client, this route
-// runs on the Next.js server. Model choice: Haiku 4.5 — this is a short
-// summarization task (technical snapshot -> narrative), not reasoning-heavy,
-// and PRD explicitly calls for controlled API cost.
-const anthropic = new Anthropic();
+// Server-only: GEMINI_API_KEY is never exposed to the client, this route
+// runs on the Next.js server. Model choice: Gemini 2.5 Flash-Lite — this is
+// a short summarization task (technical snapshot -> narrative), not
+// reasoning-heavy, and PRD explicitly calls for controlled API cost.
+const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
 
 const CACHE_TTL_MS = 60 * 60 * 1000; // 1 jam, per PRD 4.3 (kontrol biaya)
 const insightCache = new TtlCache<string>(CACHE_TTL_MS, 256);
@@ -55,15 +55,16 @@ export async function POST(request: NextRequest) {
 
   let narrative: string;
   try {
-    const message = await anthropic.messages.create({
-      model: "claude-haiku-4-5",
-      max_tokens: 512,
-      system: SYSTEM_PROMPT,
-      messages: [{ role: "user", content: buildUserPrompt(data) }],
+    const response = await ai.models.generateContent({
+      model: "gemini-2.5-flash-lite",
+      contents: buildUserPrompt(data),
+      config: {
+        systemInstruction: SYSTEM_PROMPT,
+        maxOutputTokens: 512,
+      },
     });
 
-    const textBlock = message.content.find((block) => block.type === "text");
-    narrative = textBlock?.text ?? "";
+    narrative = response.text ?? "";
   } catch {
     return NextResponse.json({ detail: "Gagal membuat AI insight." }, { status: 502 });
   }
