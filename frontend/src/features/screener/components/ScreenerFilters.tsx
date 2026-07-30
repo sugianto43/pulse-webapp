@@ -90,7 +90,7 @@ export default function ScreenerFilters({
       <button
         onClick={onSubmit}
         disabled={loading || (useCustom && !criteria.trim())}
-        className="w-full rounded-lg bg-black px-4 py-2 font-medium text-white disabled:opacity-50 dark:bg-zinc-50 dark:text-black sm:w-auto"
+        className="w-full rounded-lg bg-black px-4 py-2 font-medium text-white disabled:opacity-50 sm:w-auto dark:bg-zinc-50 dark:text-black"
       >
         {loading ? "Scanning..." : "Scan"}
       </button>

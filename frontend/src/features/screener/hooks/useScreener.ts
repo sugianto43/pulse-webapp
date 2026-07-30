@@ -26,7 +26,7 @@ export function useScreener() {
         preset: useCustom ? undefined : preset,
         criteria: useCustom ? criteria : undefined,
       },
-      { onSettled: () => setElapsedMs(performance.now() - startRef.current) }
+      { onSettled: () => setElapsedMs(performance.now() - startRef.current) },
     );
   }
 

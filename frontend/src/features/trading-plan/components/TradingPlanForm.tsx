@@ -29,9 +29,7 @@ export default function TradingPlanForm({
           />
         </div>
         <div>
-          <label className="mb-1 block text-xs font-medium text-zinc-500">
-            Risk Tolerance (%)
-          </label>
+          <label className="mb-1 block text-xs font-medium text-zinc-500">Risk Tolerance (%)</label>
           <input
             type="number"
             min={0.1}
@@ -46,7 +44,7 @@ export default function TradingPlanForm({
       <button
         onClick={onSubmit}
         disabled={loading}
-        className="w-full rounded-lg bg-black px-4 py-2 font-medium text-white disabled:opacity-50 dark:bg-zinc-50 dark:text-black sm:w-auto"
+        className="w-full rounded-lg bg-black px-4 py-2 font-medium text-white disabled:opacity-50 sm:w-auto dark:bg-zinc-50 dark:text-black"
       >
         {loading ? "Menghitung..." : "Hitung Ulang"}
       </button>
