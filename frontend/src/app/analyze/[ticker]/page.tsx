@@ -1,10 +1,18 @@
 import Link from "next/link";
+import GlossaryAccordion from "@/components/GlossaryAccordion";
 import SearchBox from "@/components/SearchBox";
 import { analyzeTicker } from "@/features/analyze/api";
 import IndicatorPanel from "@/features/analyze/components/IndicatorPanel";
 import PriceChart from "@/features/analyze/components/PriceChart";
 import AiInsightCard from "@/features/ai-insight/components/AiInsightCard";
 import { ApiError } from "@/lib/api-client";
+import {
+  MACD_TERM,
+  RSI_TERM,
+  SMA_TERM,
+  SUPPORT_RESISTANCE_TERM,
+  TREND_SIGNAL_TERM,
+} from "@/lib/glossary-terms";
 
 export default async function AnalyzePage({ params }: { params: Promise<{ ticker: string }> }) {
   const { ticker } = await params;
@@ -80,6 +88,13 @@ export default async function AnalyzePage({ params }: { params: Promise<{ ticker
 
         <div className="mt-6 rounded-lg border border-zinc-200 bg-white p-4 dark:border-zinc-800 dark:bg-zinc-900">
           <IndicatorPanel indicators={indicators} currentPrice={price.current_price} />
+        </div>
+
+        <div className="mt-6">
+          <GlossaryAccordion
+            title="Istilah Indikator Teknikal"
+            terms={[RSI_TERM, MACD_TERM, SMA_TERM, SUPPORT_RESISTANCE_TERM, TREND_SIGNAL_TERM]}
+          />
         </div>
 
         <div className="mt-6">

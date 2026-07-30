@@ -5,6 +5,7 @@ import SearchBox from "@/components/SearchBox";
 import TradingPlanCard from "@/features/trading-plan/components/TradingPlanCard";
 import TradingPlanCardSkeleton from "@/features/trading-plan/components/TradingPlanCardSkeleton";
 import TradingPlanForm from "@/features/trading-plan/components/TradingPlanForm";
+import TradingPlanGlossary from "@/features/trading-plan/components/TradingPlanGlossary";
 import { useTradingPlan } from "@/features/trading-plan/hooks/useTradingPlan";
 
 export default function PlanPage() {
@@ -43,6 +44,10 @@ export default function PlanPage() {
           {!plan.error && plan.loading && !plan.data && <TradingPlanCardSkeleton />}
 
           {!plan.error && plan.data && <TradingPlanCard data={plan.data} />}
+        </div>
+
+        <div className="mt-6">
+          <TradingPlanGlossary />
         </div>
       </main>
     </div>

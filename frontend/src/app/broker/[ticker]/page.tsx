@@ -4,6 +4,7 @@ import { useParams } from "next/navigation";
 import SearchBox from "@/components/SearchBox";
 import BrokerCompositionBar from "@/features/broker/components/BrokerCompositionBar";
 import BrokerFlowSkeleton from "@/features/broker/components/BrokerFlowSkeleton";
+import BrokerGlossary from "@/features/broker/components/BrokerGlossary";
 import BrokerPatternAlerts from "@/features/broker/components/BrokerPatternAlerts";
 import BrokerScoreCards from "@/features/broker/components/BrokerScoreCards";
 import { useBrokerFlowQuery } from "@/features/broker/hooks/useBrokerFlowQuery";
@@ -147,6 +148,10 @@ export default function BrokerFlowPage() {
             )}
           </>
         )}
+
+        <div className="mt-6">
+          <BrokerGlossary />
+        </div>
       </main>
     </div>
   );
