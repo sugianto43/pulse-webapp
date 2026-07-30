@@ -11,7 +11,7 @@ export default function Home() {
       <main className="w-full max-w-md text-center">
         <div className="mb-2 flex items-center justify-center gap-3">
           <Logo className="h-11 w-11" />
-          <h1 className="text-4xl font-semibold tracking-tight text-black dark:text-zinc-50">
+          <h1 className="animate-gradient-text bg-linear-to-r from-emerald-500 via-blue-500 to-purple-500 bg-clip-text text-5xl font-bold tracking-tight text-transparent dark:from-emerald-400 dark:via-blue-400 dark:to-purple-400">
             Radar Saham
           </h1>
         </div>
