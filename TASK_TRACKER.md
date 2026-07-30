@@ -1,4 +1,4 @@
-# Task Tracker — Pulse Web
+# Task Tracker — Radar Saham
 
 > Turunan dari `PRD-Pulse-WebApp.md`. Update checkbox tiap task selesai. Fase 4 boleh paralel dengan Fase 2/3.
 

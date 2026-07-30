@@ -1,4 +1,4 @@
-# Pulse Web — Engineering Conventions
+# Radar Saham — Engineering Conventions
 
 Monorepo: `backend/` (FastAPI, wraps `Pulse-CLI/` core logic), `frontend/` (Next.js App Router), `Pulse-CLI/` (vendored upstream, gitignored — separate repo/history, don't assume it's tracked here).
 

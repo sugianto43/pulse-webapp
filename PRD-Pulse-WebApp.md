@@ -1,6 +1,6 @@
 # Product Requirements Document (PRD)
 
-## Pulse Web — Platform Analisis Saham IDX Berbasis AI
+## Radar Saham — Platform Analisis Saham IDX Berbasis AI
 
 |                     |                                                            |
 | ------------------- | ---------------------------------------------------------- |
