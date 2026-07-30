@@ -2,7 +2,7 @@ import Link from "next/link";
 import Card from "@/components/Card";
 
 export const metadata = {
-  title: "Disclaimer — Pulse Web",
+  title: "Disclaimer — Radar Saham",
 };
 
 export default function LegalPage() {
@@ -22,7 +22,7 @@ export default function LegalPage() {
 
         <Card className="space-y-4 p-5 text-sm text-zinc-700 dark:text-zinc-300">
           <p className="font-medium text-black dark:text-zinc-50">
-            Pulse Web hanya untuk tujuan edukasi dan informasi.
+            Radar Saham hanya untuk tujuan edukasi dan informasi.
           </p>
 
           <ul className="list-inside list-disc space-y-2">

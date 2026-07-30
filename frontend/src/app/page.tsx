@@ -9,7 +9,7 @@ export default function Home() {
     <div className="flex min-h-screen flex-col items-center justify-center p-6">
       <main className="w-full max-w-md text-center">
         <h1 className="mb-2 text-4xl font-semibold tracking-tight text-black dark:text-zinc-50">
-          Pulse Web
+          Radar Saham
         </h1>
         <p className="mb-8 text-zinc-500">Analisis teknikal saham IDX — cari ticker untuk mulai.</p>
 

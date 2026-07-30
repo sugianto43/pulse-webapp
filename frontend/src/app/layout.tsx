@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Pulse Web — Analisis Saham IDX",
+  title: "Radar Saham — Analisis Saham IDX",
   description: "Analisis teknikal, screener, trading plan, SAPTA, dan broker flow untuk saham IDX.",
 };
 
