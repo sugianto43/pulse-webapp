@@ -3,6 +3,7 @@
 import { useParams } from "next/navigation";
 import SearchBox from "@/components/SearchBox";
 import BrokerCompositionBar from "@/features/broker/components/BrokerCompositionBar";
+import BrokerFlowSkeleton from "@/features/broker/components/BrokerFlowSkeleton";
 import BrokerPatternAlerts from "@/features/broker/components/BrokerPatternAlerts";
 import BrokerScoreCards from "@/features/broker/components/BrokerScoreCards";
 import { useBrokerFlowQuery } from "@/features/broker/hooks/useBrokerFlowQuery";
@@ -30,9 +31,7 @@ export default function BrokerFlowPage() {
           Analisis bandarmology: komposisi broker, akumulasi/distribusi, dan pattern alert.
         </p>
 
-        {isLoading && (
-          <div className="animate-pulse text-sm text-zinc-500">Menganalisis broker flow...</div>
-        )}
+        {isLoading && <BrokerFlowSkeleton />}
 
         {error && (
           <div className="rounded-lg border border-red-200 bg-red-50 p-4 text-red-700 dark:border-red-900 dark:bg-red-950 dark:text-red-300">

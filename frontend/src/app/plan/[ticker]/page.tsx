@@ -3,6 +3,7 @@
 import { useParams } from "next/navigation";
 import SearchBox from "@/components/SearchBox";
 import TradingPlanCard from "@/features/trading-plan/components/TradingPlanCard";
+import TradingPlanCardSkeleton from "@/features/trading-plan/components/TradingPlanCardSkeleton";
 import TradingPlanForm from "@/features/trading-plan/components/TradingPlanForm";
 import { useTradingPlan } from "@/features/trading-plan/hooks/useTradingPlan";
 
@@ -38,6 +39,8 @@ export default function PlanPage() {
               {plan.error}
             </div>
           )}
+
+          {!plan.error && plan.loading && !plan.data && <TradingPlanCardSkeleton />}
 
           {!plan.error && plan.data && <TradingPlanCard data={plan.data} />}
         </div>
