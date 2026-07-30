@@ -27,6 +27,22 @@ export default function Home() {
             ))}
           </div>
         </Card>
+
+        <p className="mt-6 mb-2 text-xs font-medium text-zinc-500">Atau jelajahi fitur</p>
+        <div className="grid grid-cols-2 gap-3">
+          <Link href="/screen">
+            <Card className="p-4 text-left transition hover:bg-white/80 dark:hover:bg-zinc-900/80">
+              <div className="font-medium text-black dark:text-zinc-50">Screener</div>
+              <p className="mt-1 text-xs text-zinc-500">Saring ratusan saham sekaligus</p>
+            </Card>
+          </Link>
+          <Link href="/sapta">
+            <Card className="p-4 text-left transition hover:bg-white/80 dark:hover:bg-zinc-900/80">
+              <div className="font-medium text-black dark:text-zinc-50">SAPTA Scan</div>
+              <p className="mt-1 text-xs text-zinc-500">Cari kandidat pre-markup</p>
+            </Card>
+          </Link>
+        </div>
       </main>
     </div>
   );

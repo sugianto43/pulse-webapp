@@ -3,6 +3,7 @@
 import { useParams } from "next/navigation";
 import Card from "@/components/Card";
 import SearchBox from "@/components/SearchBox";
+import TickerNav from "@/components/TickerNav";
 import SaptaDetailSkeleton from "@/features/sapta/components/SaptaDetailSkeleton";
 import SaptaMethodologyInfo from "@/features/sapta/components/SaptaMethodologyInfo";
 import SaptaModuleBreakdown from "@/features/sapta/components/SaptaModuleBreakdown";
@@ -30,9 +31,12 @@ export default function SaptaDetailPage() {
         <h1 className="mt-6 mb-1 text-2xl font-semibold text-black dark:text-zinc-50">
           SAPTA — {ticker}
         </h1>
-        <p className="mb-6 text-sm text-zinc-500">
+        <p className="mb-2 text-sm text-zinc-500">
           Deteksi fase pre-markup berbasis 6 modul analisis teknikal.
         </p>
+        <div className="mb-6">
+          <TickerNav ticker={ticker} />
+        </div>
 
         {isLoading && <SaptaDetailSkeleton />}
 

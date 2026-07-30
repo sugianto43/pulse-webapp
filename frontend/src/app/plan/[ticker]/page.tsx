@@ -2,6 +2,7 @@
 
 import { useParams } from "next/navigation";
 import SearchBox from "@/components/SearchBox";
+import TickerNav from "@/components/TickerNav";
 import TradingPlanCard from "@/features/trading-plan/components/TradingPlanCard";
 import TradingPlanCardSkeleton from "@/features/trading-plan/components/TradingPlanCardSkeleton";
 import TradingPlanForm from "@/features/trading-plan/components/TradingPlanForm";
@@ -21,9 +22,12 @@ export default function PlanPage() {
         <h1 className="mt-6 mb-1 text-2xl font-semibold text-black dark:text-zinc-50">
           Trading Plan — {ticker}
         </h1>
-        <p className="mb-6 text-sm text-zinc-500">
+        <p className="mb-2 text-sm text-zinc-500">
           Entry, take profit, stop loss, dan position sizing otomatis.
         </p>
+        <div className="mb-6">
+          <TickerNav ticker={ticker} />
+        </div>
 
         <TradingPlanForm
           accountSizeInput={plan.accountSizeInput}

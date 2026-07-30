@@ -3,6 +3,7 @@
 import { useParams } from "next/navigation";
 import Card from "@/components/Card";
 import SearchBox from "@/components/SearchBox";
+import TickerNav from "@/components/TickerNav";
 import BrokerCompositionBar from "@/features/broker/components/BrokerCompositionBar";
 import BrokerFlowSkeleton from "@/features/broker/components/BrokerFlowSkeleton";
 import BrokerGlossary from "@/features/broker/components/BrokerGlossary";
@@ -29,9 +30,12 @@ export default function BrokerFlowPage() {
         <h1 className="mt-6 mb-1 text-2xl font-semibold text-black dark:text-zinc-50">
           Broker Flow — {ticker}
         </h1>
-        <p className="mb-6 text-sm text-zinc-500">
+        <p className="mb-2 text-sm text-zinc-500">
           Analisis bandarmology: komposisi broker, akumulasi/distribusi, dan pattern alert.
         </p>
+        <div className="mb-6">
+          <TickerNav ticker={ticker} />
+        </div>
 
         {isLoading && <BrokerFlowSkeleton />}
 

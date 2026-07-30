@@ -1,7 +1,7 @@
-import Link from "next/link";
 import Card from "@/components/Card";
 import GlossaryAccordion from "@/components/GlossaryAccordion";
 import SearchBox from "@/components/SearchBox";
+import TickerNav from "@/components/TickerNav";
 import { analyzeTicker } from "@/features/analyze/api";
 import IndicatorPanel from "@/features/analyze/components/IndicatorPanel";
 import PriceChart from "@/features/analyze/components/PriceChart";
@@ -47,26 +47,7 @@ export default async function AnalyzePage({ params }: { params: Promise<{ ticker
           <div>
             <h1 className="text-2xl font-semibold text-black dark:text-zinc-50">{price.ticker}</h1>
             {price.name && <p className="text-sm text-zinc-500">{price.name}</p>}
-            <div className="mt-2 flex flex-wrap gap-2">
-              <Link
-                href={`/plan/${price.ticker}`}
-                className="rounded-full border border-black/5 bg-white/60 px-3 py-1 text-sm text-black backdrop-blur-sm transition hover:bg-white dark:border-white/10 dark:bg-zinc-900/50 dark:text-zinc-50 dark:hover:bg-zinc-800"
-              >
-                Trading Plan →
-              </Link>
-              <Link
-                href={`/sapta/${price.ticker}`}
-                className="rounded-full border border-black/5 bg-white/60 px-3 py-1 text-sm text-black backdrop-blur-sm transition hover:bg-white dark:border-white/10 dark:bg-zinc-900/50 dark:text-zinc-50 dark:hover:bg-zinc-800"
-              >
-                Skor SAPTA →
-              </Link>
-              <Link
-                href={`/broker/${price.ticker}`}
-                className="rounded-full border border-black/5 bg-white/60 px-3 py-1 text-sm text-black backdrop-blur-sm transition hover:bg-white dark:border-white/10 dark:bg-zinc-900/50 dark:text-zinc-50 dark:hover:bg-zinc-800"
-              >
-                Broker Flow →
-              </Link>
-            </div>
+            <TickerNav ticker={price.ticker} />
           </div>
           <div className="text-right">
             <div className="text-2xl font-semibold text-black dark:text-zinc-50">
