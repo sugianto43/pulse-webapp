@@ -84,11 +84,11 @@
 
 ## Fase 7 — Polish & Production Readiness
 
-- [ ] Tambahkan loading states & skeleton UI di semua halaman.
-- [ ] Audit responsive design (mobile-first check) di semua fitur.
-- [ ] Setup monitoring/error tracking (Sentry atau sejenis).
-- [ ] Tambahkan rate limiting API publik — cegah abuse/scraping berlebihan.
-- [ ] Buat halaman legal/disclaimer sesuai disclaimer asli Pulse CLI (bukan nasihat keuangan).
+- [x] Tambahkan loading states & skeleton UI di semua halaman. — `Skeleton` primitive (`components/Skeleton.tsx`) + per-feature skeleton komponen (analyze via Next `loading.tsx`, plan/sapta/broker/screener via isLoading branch).
+- [x] Audit responsive design (mobile-first check) di semua fitur. — sudah konsisten pakai grid-cols-1/2 sm:grid-cols-N, flex-wrap, overflow-x-auto sejak fase-fase sebelumnya; tidak ada fix yang diperlukan.
+- [x] Setup monitoring/error tracking (Sentry atau sejenis). — `@sentry/nextjs` (instrumentation.ts + instrumentation-client.ts) di frontend, `sentry-sdk[fastapi]` di backend (`app/main.py`). Disabled secara default (DSN kosong), aman untuk local dev.
+- [x] Tambahkan rate limiting API publik — cegah abuse/scraping berlebihan. — `slowapi` `SlowAPIMiddleware`, default 60/menit per-IP (`app/rate_limit.py`), didaftarkan sebelum `CORSMiddleware` supaya CORS tetap membungkus response 429.
+- [x] Buat halaman legal/disclaimer sesuai disclaimer asli Pulse CLI (bukan nasihat keuangan). — `/legal`, linked dari `Footer` global di root layout.
 
 ---
 

@@ -2,6 +2,7 @@
 
 import { useParams } from "next/navigation";
 import SearchBox from "@/components/SearchBox";
+import SaptaDetailSkeleton from "@/features/sapta/components/SaptaDetailSkeleton";
 import SaptaMethodologyInfo from "@/features/sapta/components/SaptaMethodologyInfo";
 import SaptaModuleBreakdown from "@/features/sapta/components/SaptaModuleBreakdown";
 import SaptaScoreGauge from "@/features/sapta/components/SaptaScoreGauge";
@@ -32,7 +33,7 @@ export default function SaptaDetailPage() {
           Deteksi fase pre-markup berbasis 6 modul analisis teknikal.
         </p>
 
-        {isLoading && <div className="animate-pulse text-sm text-zinc-500">Menganalisis...</div>}
+        {isLoading && <SaptaDetailSkeleton />}
 
         {error && (
           <div className="rounded-lg border border-red-200 bg-red-50 p-4 text-red-700 dark:border-red-900 dark:bg-red-950 dark:text-red-300">

@@ -2,6 +2,7 @@
 
 import ScreenerFilters from "@/features/screener/components/ScreenerFilters";
 import ScreenerTable from "@/features/screener/components/ScreenerTable";
+import ScreenerTableSkeleton from "@/features/screener/components/ScreenerTableSkeleton";
 import { useScreener } from "@/features/screener/hooks/useScreener";
 
 export default function ScreenPage() {
@@ -42,6 +43,8 @@ export default function ScreenPage() {
               {screener.cached ? " (dari cache)" : ""}
             </p>
           )}
+
+          {!screener.error && screener.loading && !screener.results && <ScreenerTableSkeleton />}
 
           {!screener.error && screener.results && <ScreenerTable data={screener.results} />}
         </div>

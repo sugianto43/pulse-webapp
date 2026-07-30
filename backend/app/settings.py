@@ -29,3 +29,11 @@ SCREEN_CACHE_MAX_SIZE = int(os.getenv("PULSE_WEB_SCREEN_CACHE_MAX_SIZE", "256"))
 
 SAPTA_SCAN_CACHE_TTL_SECONDS = int(os.getenv("PULSE_WEB_SAPTA_SCAN_CACHE_TTL", "3600"))
 SAPTA_SCAN_CACHE_MAX_SIZE = int(os.getenv("PULSE_WEB_SAPTA_SCAN_CACHE_MAX_SIZE", "64"))
+
+# Empty/unset disables the SDK (sentry_sdk.init no-ops with dsn=None) — safe
+# default for local dev without a Sentry account.
+SENTRY_DSN = os.getenv("SENTRY_DSN") or None
+SENTRY_TRACES_SAMPLE_RATE = float(os.getenv("SENTRY_TRACES_SAMPLE_RATE", "0.1"))
+
+# Applied per-IP to every route via SlowAPIMiddleware (see app/rate_limit.py).
+RATE_LIMIT_DEFAULT = os.getenv("PULSE_WEB_RATE_LIMIT_DEFAULT", "60/minute")
