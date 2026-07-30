@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, type ReactNode } from "react";
+import Card from "./Card";
 
 export type GlossaryTerm = { term: string; description: string };
 
@@ -18,7 +19,7 @@ export default function GlossaryAccordion({
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="rounded-lg border border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-900">
+    <Card>
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
@@ -28,7 +29,7 @@ export default function GlossaryAccordion({
         <span>{open ? "−" : "+"}</span>
       </button>
       {open && (
-        <div className="border-t border-zinc-200 p-4 text-sm dark:border-zinc-800">
+        <div className="border-t border-black/5 p-4 text-sm dark:border-white/10">
           {intro && <div className="mb-3 text-zinc-600 dark:text-zinc-400">{intro}</div>}
           <ul className="space-y-2">
             {terms.map((t) => (
@@ -41,6 +42,6 @@ export default function GlossaryAccordion({
           {footer && <div className="mt-3 text-xs text-zinc-500">{footer}</div>}
         </div>
       )}
-    </div>
+    </Card>
   );
 }

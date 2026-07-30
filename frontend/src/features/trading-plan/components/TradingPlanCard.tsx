@@ -1,3 +1,4 @@
+import Card from "@/components/Card";
 import type { TradingPlanResponse } from "../types";
 
 function fmtRp(n: number): string {
@@ -19,7 +20,7 @@ export default function TradingPlanCard({ data }: { data: TradingPlanResponse })
   const rewardShare = 100 - riskShare;
 
   return (
-    <div className="flex flex-col gap-6 rounded-lg border border-zinc-200 bg-white p-5 dark:border-zinc-800 dark:bg-zinc-900">
+    <Card className="flex flex-col gap-6 p-5">
       <div className="flex flex-wrap items-center justify-between gap-2">
         <div>
           <h2 className="text-lg font-semibold text-black dark:text-zinc-50">{plan.ticker}</h2>
@@ -47,12 +48,12 @@ export default function TradingPlanCard({ data }: { data: TradingPlanResponse })
       </div>
 
       <div className="grid grid-cols-2 gap-3 text-sm sm:grid-cols-4">
-        <div className="rounded-lg border border-red-200 p-3 dark:border-red-900">
+        <div className="rounded-xl border border-red-200/50 bg-red-50/30 p-3 dark:border-red-900/50 dark:bg-red-500/5">
           <div className="text-xs text-zinc-500">Stop Loss</div>
           <div className="font-medium text-red-600 dark:text-red-400">{fmtRp(plan.stop_loss)}</div>
           <div className="text-xs text-zinc-500">{plan.stop_loss_percent.toFixed(2)}%</div>
         </div>
-        <div className="rounded-lg border border-emerald-200 p-3 dark:border-emerald-900">
+        <div className="rounded-xl border border-emerald-200/50 bg-emerald-50/30 p-3 dark:border-emerald-900/50 dark:bg-emerald-500/5">
           <div className="text-xs text-zinc-500">TP1</div>
           <div className="font-medium text-emerald-600 dark:text-emerald-400">
             {fmtRp(plan.tp1)}
@@ -60,7 +61,7 @@ export default function TradingPlanCard({ data }: { data: TradingPlanResponse })
           <div className="text-xs text-zinc-500">+{plan.tp1_percent.toFixed(2)}%</div>
         </div>
         {plan.tp2 != null && (
-          <div className="rounded-lg border border-emerald-200 p-3 dark:border-emerald-900">
+          <div className="rounded-xl border border-emerald-200/50 bg-emerald-50/30 p-3 dark:border-emerald-900/50 dark:bg-emerald-500/5">
             <div className="text-xs text-zinc-500">TP2</div>
             <div className="font-medium text-emerald-600 dark:text-emerald-400">
               {fmtRp(plan.tp2)}
@@ -69,7 +70,7 @@ export default function TradingPlanCard({ data }: { data: TradingPlanResponse })
           </div>
         )}
         {plan.tp3 != null && (
-          <div className="rounded-lg border border-emerald-200 p-3 dark:border-emerald-900">
+          <div className="rounded-xl border border-emerald-200/50 bg-emerald-50/30 p-3 dark:border-emerald-900/50 dark:bg-emerald-500/5">
             <div className="text-xs text-zinc-500">TP3</div>
             <div className="font-medium text-emerald-600 dark:text-emerald-400">
               {fmtRp(plan.tp3)}
@@ -135,6 +136,6 @@ export default function TradingPlanCard({ data }: { data: TradingPlanResponse })
           </ol>
         </div>
       )}
-    </div>
+    </Card>
   );
 }

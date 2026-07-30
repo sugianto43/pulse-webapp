@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Card from "@/components/Card";
 import GlossaryAccordion from "@/components/GlossaryAccordion";
 import SearchBox from "@/components/SearchBox";
 import { analyzeTicker } from "@/features/analyze/api";
@@ -23,10 +24,10 @@ export default async function AnalyzePage({ params }: { params: Promise<{ ticker
   } catch (err) {
     const message = err instanceof ApiError ? err.message : "Terjadi kesalahan tak terduga.";
     return (
-      <div className="min-h-screen bg-zinc-50 p-4 sm:p-6 dark:bg-black">
+      <div className="min-h-screen p-4 sm:p-6">
         <main className="mx-auto max-w-3xl">
           <SearchBox initial={ticker} />
-          <div className="mt-6 rounded-lg border border-red-200 bg-red-50 p-4 text-red-700 dark:border-red-900 dark:bg-red-950 dark:text-red-300">
+          <div className="mt-6 rounded-2xl border border-red-200/50 bg-red-50/80 p-4 text-red-700 backdrop-blur-xl dark:border-red-900/50 dark:bg-red-950/50 dark:text-red-300">
             {message}
           </div>
         </main>
@@ -38,7 +39,7 @@ export default async function AnalyzePage({ params }: { params: Promise<{ ticker
   const isUp = price.change >= 0;
 
   return (
-    <div className="min-h-screen bg-zinc-50 p-4 sm:p-6 dark:bg-black">
+    <div className="min-h-screen p-4 sm:p-6">
       <main className="mx-auto max-w-3xl">
         <SearchBox initial={ticker} />
 
@@ -46,24 +47,24 @@ export default async function AnalyzePage({ params }: { params: Promise<{ ticker
           <div>
             <h1 className="text-2xl font-semibold text-black dark:text-zinc-50">{price.ticker}</h1>
             {price.name && <p className="text-sm text-zinc-500">{price.name}</p>}
-            <div className="mt-1 flex flex-wrap gap-x-4 gap-y-1">
+            <div className="mt-2 flex flex-wrap gap-2">
               <Link
                 href={`/plan/${price.ticker}`}
-                className="inline-block text-sm text-black underline decoration-zinc-300 hover:decoration-zinc-500 dark:text-zinc-50"
+                className="rounded-full border border-black/5 bg-white/60 px-3 py-1 text-sm text-black backdrop-blur-sm transition hover:bg-white dark:border-white/10 dark:bg-zinc-900/50 dark:text-zinc-50 dark:hover:bg-zinc-800"
               >
-                Lihat Trading Plan →
+                Trading Plan →
               </Link>
               <Link
                 href={`/sapta/${price.ticker}`}
-                className="inline-block text-sm text-black underline decoration-zinc-300 hover:decoration-zinc-500 dark:text-zinc-50"
+                className="rounded-full border border-black/5 bg-white/60 px-3 py-1 text-sm text-black backdrop-blur-sm transition hover:bg-white dark:border-white/10 dark:bg-zinc-900/50 dark:text-zinc-50 dark:hover:bg-zinc-800"
               >
-                Lihat Skor SAPTA →
+                Skor SAPTA →
               </Link>
               <Link
                 href={`/broker/${price.ticker}`}
-                className="inline-block text-sm text-black underline decoration-zinc-300 hover:decoration-zinc-500 dark:text-zinc-50"
+                className="rounded-full border border-black/5 bg-white/60 px-3 py-1 text-sm text-black backdrop-blur-sm transition hover:bg-white dark:border-white/10 dark:bg-zinc-900/50 dark:text-zinc-50 dark:hover:bg-zinc-800"
               >
-                Lihat Broker Flow →
+                Broker Flow →
               </Link>
             </div>
           </div>
@@ -82,13 +83,13 @@ export default async function AnalyzePage({ params }: { params: Promise<{ ticker
           </div>
         </div>
 
-        <div className="mt-6 rounded-lg border border-zinc-200 bg-white p-2 sm:p-4 dark:border-zinc-800 dark:bg-zinc-900">
+        <Card className="mt-6 p-2 sm:p-4">
           <PriceChart history={price.history} />
-        </div>
+        </Card>
 
-        <div className="mt-6 rounded-lg border border-zinc-200 bg-white p-4 dark:border-zinc-800 dark:bg-zinc-900">
+        <Card className="mt-6 p-4">
           <IndicatorPanel indicators={indicators} currentPrice={price.current_price} />
-        </div>
+        </Card>
 
         <div className="mt-6">
           <GlossaryAccordion

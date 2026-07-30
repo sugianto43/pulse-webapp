@@ -1,6 +1,7 @@
 "use client";
 
 import { useParams } from "next/navigation";
+import Card from "@/components/Card";
 import SearchBox from "@/components/SearchBox";
 import BrokerCompositionBar from "@/features/broker/components/BrokerCompositionBar";
 import BrokerFlowSkeleton from "@/features/broker/components/BrokerFlowSkeleton";
@@ -21,7 +22,7 @@ export default function BrokerFlowPage() {
   const { data, isLoading, error } = useBrokerFlowQuery(ticker);
 
   return (
-    <div className="min-h-screen bg-zinc-50 p-4 sm:p-6 dark:bg-black">
+    <div className="min-h-screen p-4 sm:p-6">
       <main className="mx-auto max-w-2xl">
         <SearchBox initial={ticker} />
 
@@ -35,14 +36,14 @@ export default function BrokerFlowPage() {
         {isLoading && <BrokerFlowSkeleton />}
 
         {error && (
-          <div className="rounded-lg border border-red-200 bg-red-50 p-4 text-red-700 dark:border-red-900 dark:bg-red-950 dark:text-red-300">
+          <div className="rounded-2xl border border-red-200/50 bg-red-50/80 p-4 text-red-700 backdrop-blur-xl dark:border-red-900/50 dark:bg-red-950/50 dark:text-red-300">
             {error instanceof ApiError ? error.message : "Terjadi kesalahan tak terduga."}
           </div>
         )}
 
         {data && (
           <>
-            <div className="rounded-lg border border-zinc-200 bg-white p-4 dark:border-zinc-800 dark:bg-zinc-900">
+            <Card className="p-4">
               <div className="mb-4 flex flex-wrap items-center justify-between gap-2">
                 <div>
                   <div className="text-lg font-semibold text-black dark:text-zinc-50">
@@ -59,22 +60,22 @@ export default function BrokerFlowPage() {
                 markupReadinessScore={data.markup_readiness_score}
                 confidence={data.confidence}
               />
-            </div>
+            </Card>
 
             {data.distribution_warning && (
-              <div className="mt-6 rounded-lg border border-red-200 bg-red-50 p-4 text-sm text-red-700 dark:border-red-900 dark:bg-red-950 dark:text-red-300">
+              <div className="mt-6 rounded-2xl border border-red-200/50 bg-red-50/80 p-4 text-sm text-red-700 backdrop-blur-xl dark:border-red-900/50 dark:bg-red-950/50 dark:text-red-300">
                 ⚠️ Distribution warning — indikasi smart money mulai keluar.
               </div>
             )}
 
             {data.broker_composition && (
-              <div className="mt-6 rounded-lg border border-zinc-200 bg-white p-4 dark:border-zinc-800 dark:bg-zinc-900">
+              <Card className="mt-6 p-4">
                 <h2 className="mb-3 text-sm font-medium text-zinc-500">Komposisi Broker</h2>
                 <BrokerCompositionBar composition={data.broker_composition} />
-              </div>
+              </Card>
             )}
 
-            <div className="mt-6 grid grid-cols-2 gap-3 rounded-lg border border-zinc-200 bg-white p-4 text-sm sm:grid-cols-3 dark:border-zinc-800 dark:bg-zinc-900">
+            <Card className="mt-6 grid grid-cols-2 gap-3 p-4 text-sm sm:grid-cols-3">
               <div>
                 <div className="text-xs text-zinc-500">Foreign Net</div>
                 <div className="text-black dark:text-zinc-50">{fmtRp(data.foreign_net_total)}</div>
@@ -111,33 +112,33 @@ export default function BrokerFlowPage() {
                   </div>
                 </div>
               )}
-            </div>
+            </Card>
 
-            <div className="mt-6 rounded-lg border border-zinc-200 bg-white p-4 dark:border-zinc-800 dark:bg-zinc-900">
+            <Card className="mt-6 p-4">
               <h2 className="mb-3 text-sm font-medium text-zinc-500">Pattern Alerts</h2>
               <BrokerPatternAlerts alerts={data.pattern_alerts} />
-            </div>
+            </Card>
 
             {data.recommendation && (
-              <div className="mt-6 rounded-lg border border-zinc-200 bg-white p-4 text-sm dark:border-zinc-800 dark:bg-zinc-900">
+              <Card className="mt-6 p-4 text-sm">
                 <h2 className="mb-2 text-xs font-medium text-zinc-500">Rekomendasi</h2>
                 <p className="text-black dark:text-zinc-50">{data.recommendation}</p>
-              </div>
+              </Card>
             )}
 
             {data.insights.length > 0 && (
-              <div className="mt-6 rounded-lg border border-zinc-200 bg-white p-4 dark:border-zinc-800 dark:bg-zinc-900">
+              <Card className="mt-6 p-4">
                 <h2 className="mb-2 text-sm font-medium text-zinc-500">Insight</h2>
                 <ul className="list-inside list-disc space-y-1 text-sm text-zinc-600 dark:text-zinc-400">
                   {data.insights.map((insight) => (
                     <li key={insight}>{insight}</li>
                   ))}
                 </ul>
-              </div>
+              </Card>
             )}
 
             {data.risks.length > 0 && (
-              <div className="mt-6 rounded-lg border border-amber-200 bg-amber-50 p-4 text-sm text-amber-800 dark:border-amber-900 dark:bg-amber-950 dark:text-amber-300">
+              <div className="mt-6 rounded-2xl border border-amber-200/50 bg-amber-50/80 p-4 text-sm text-amber-800 backdrop-blur-xl dark:border-amber-900/50 dark:bg-amber-950/50 dark:text-amber-300">
                 <h2 className="mb-2 text-xs font-medium">Risiko</h2>
                 <ul className="list-inside list-disc space-y-1">
                   {data.risks.map((risk) => (

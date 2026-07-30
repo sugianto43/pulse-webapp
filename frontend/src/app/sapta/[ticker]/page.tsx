@@ -1,6 +1,7 @@
 "use client";
 
 import { useParams } from "next/navigation";
+import Card from "@/components/Card";
 import SearchBox from "@/components/SearchBox";
 import SaptaDetailSkeleton from "@/features/sapta/components/SaptaDetailSkeleton";
 import SaptaMethodologyInfo from "@/features/sapta/components/SaptaMethodologyInfo";
@@ -22,7 +23,7 @@ export default function SaptaDetailPage() {
   const { data, isLoading, error } = useSaptaQuery(ticker);
 
   return (
-    <div className="min-h-screen bg-zinc-50 p-4 sm:p-6 dark:bg-black">
+    <div className="min-h-screen p-4 sm:p-6">
       <main className="mx-auto max-w-2xl">
         <SearchBox initial={ticker} />
 
@@ -36,14 +37,14 @@ export default function SaptaDetailPage() {
         {isLoading && <SaptaDetailSkeleton />}
 
         {error && (
-          <div className="rounded-lg border border-red-200 bg-red-50 p-4 text-red-700 dark:border-red-900 dark:bg-red-950 dark:text-red-300">
+          <div className="rounded-2xl border border-red-200/50 bg-red-50/80 p-4 text-red-700 backdrop-blur-xl dark:border-red-900/50 dark:bg-red-950/50 dark:text-red-300">
             {error instanceof ApiError ? error.message : "Terjadi kesalahan tak terduga."}
           </div>
         )}
 
         {data && (
           <>
-            <div className="flex flex-col items-center gap-4 rounded-lg border border-zinc-200 bg-white p-6 sm:flex-row sm:justify-around dark:border-zinc-800 dark:bg-zinc-900">
+            <Card className="flex flex-col items-center gap-4 p-6 sm:flex-row sm:justify-around">
               <SaptaScoreGauge score={data.final_score} status={data.status} />
               <div className="text-center sm:text-left">
                 <div className="text-lg font-semibold text-black dark:text-zinc-50">
@@ -56,26 +57,26 @@ export default function SaptaDetailPage() {
                   </div>
                 )}
               </div>
-            </div>
+            </Card>
 
-            <div className="mt-6 rounded-lg border border-zinc-200 bg-white p-4 dark:border-zinc-800 dark:bg-zinc-900">
+            <Card className="mt-6 p-4">
               <h2 className="mb-3 text-sm font-medium text-zinc-500">Breakdown 6 Modul</h2>
               <SaptaModuleBreakdown modules={data.modules} />
-            </div>
+            </Card>
 
             {data.notes.length > 0 && (
-              <div className="mt-6 rounded-lg border border-zinc-200 bg-white p-4 dark:border-zinc-800 dark:bg-zinc-900">
+              <Card className="mt-6 p-4">
                 <h2 className="mb-2 text-sm font-medium text-zinc-500">Catatan</h2>
                 <ul className="list-inside list-disc space-y-1 text-sm text-zinc-600 dark:text-zinc-400">
                   {data.notes.map((note) => (
                     <li key={note}>{note}</li>
                   ))}
                 </ul>
-              </div>
+              </Card>
             )}
 
             {data.warnings.length > 0 && (
-              <div className="mt-6 rounded-lg border border-amber-200 bg-amber-50 p-4 text-sm text-amber-800 dark:border-amber-900 dark:bg-amber-950 dark:text-amber-300">
+              <div className="mt-6 rounded-2xl border border-amber-200/50 bg-amber-50/80 p-4 text-sm text-amber-800 backdrop-blur-xl dark:border-amber-900/50 dark:bg-amber-950/50 dark:text-amber-300">
                 {data.warnings.join(" · ")}
               </div>
             )}

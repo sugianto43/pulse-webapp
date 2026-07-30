@@ -1,9 +1,10 @@
+import Card from "@/components/Card";
 import Skeleton from "@/components/Skeleton";
 
 export default function BrokerFlowSkeleton() {
   return (
     <>
-      <div className="rounded-lg border border-zinc-200 bg-white p-4 dark:border-zinc-800 dark:bg-zinc-900">
+      <Card className="p-4">
         <div className="mb-4 flex flex-wrap items-center justify-between gap-2">
           <div>
             <Skeleton className="h-5 w-40" />
@@ -16,13 +17,13 @@ export default function BrokerFlowSkeleton() {
             <Skeleton key={i} className="h-6 w-full" />
           ))}
         </div>
-      </div>
+      </Card>
 
-      <div className="mt-6 grid grid-cols-2 gap-3 rounded-lg border border-zinc-200 bg-white p-4 sm:grid-cols-3 dark:border-zinc-800 dark:bg-zinc-900">
+      <Card className="mt-6 grid grid-cols-2 gap-3 p-4 sm:grid-cols-3">
         {Array.from({ length: 6 }).map((_, i) => (
           <Skeleton key={i} className="h-12 w-full" />
         ))}
-      </div>
+      </Card>
     </>
   );
 }

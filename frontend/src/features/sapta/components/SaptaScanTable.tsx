@@ -70,18 +70,18 @@ export default function SaptaScanTable({ data }: { data: SaptaResult[] }) {
 
   if (data.length === 0) {
     return (
-      <div className="rounded-lg border border-zinc-200 p-6 text-center text-sm text-zinc-500 dark:border-zinc-800">
+      <div className="rounded-2xl border border-black/5 bg-white/60 p-6 text-center text-sm text-zinc-500 backdrop-blur-xl dark:border-white/10 dark:bg-zinc-900/50">
         Tidak ada kandidat yang memenuhi kriteria.
       </div>
     );
   }
 
   return (
-    <div className="overflow-x-auto rounded-lg border border-zinc-200 dark:border-zinc-800">
+    <div className="overflow-x-auto rounded-2xl border border-black/5 bg-white/60 backdrop-blur-xl dark:border-white/10 dark:bg-zinc-900/50">
       <table className="w-full min-w-[560px] text-sm">
         <thead>
           {table.getHeaderGroups().map((headerGroup) => (
-            <tr key={headerGroup.id} className="border-b border-zinc-200 dark:border-zinc-800">
+            <tr key={headerGroup.id} className="border-b border-black/5 dark:border-white/10">
               {headerGroup.headers.map((header) => (
                 <th
                   key={header.id}
@@ -99,7 +99,7 @@ export default function SaptaScanTable({ data }: { data: SaptaResult[] }) {
           {table.getRowModel().rows.map((row) => (
             <tr
               key={row.id}
-              className="border-b border-zinc-100 last:border-0 hover:bg-zinc-50 dark:border-zinc-900 dark:hover:bg-zinc-900/50"
+              className="border-b border-black/5 transition last:border-0 hover:bg-white/60 dark:border-white/5 dark:hover:bg-white/5"
             >
               {row.getVisibleCells().map((cell) => (
                 <td

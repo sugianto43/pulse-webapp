@@ -1,10 +1,11 @@
+import Card from "@/components/Card";
 import Skeleton from "@/components/Skeleton";
 
 export default function AnalyzeLoading() {
   return (
-    <div className="min-h-screen bg-zinc-50 p-4 sm:p-6 dark:bg-black">
+    <div className="min-h-screen p-4 sm:p-6">
       <main className="mx-auto max-w-3xl">
-        <Skeleton className="h-10 w-full rounded-lg" />
+        <Skeleton className="h-10 w-full rounded-full" />
 
         <div className="mt-6 flex flex-wrap items-baseline justify-between gap-2">
           <div>
@@ -17,20 +18,20 @@ export default function AnalyzeLoading() {
           </div>
         </div>
 
-        <div className="mt-6 rounded-lg border border-zinc-200 bg-white p-2 sm:p-4 dark:border-zinc-800 dark:bg-zinc-900">
+        <Card className="mt-6 p-2 sm:p-4">
           <Skeleton className="h-90 w-full" />
-        </div>
+        </Card>
 
-        <div className="mt-6 rounded-lg border border-zinc-200 bg-white p-4 dark:border-zinc-800 dark:bg-zinc-900">
+        <Card className="mt-6 p-4">
           <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
             {Array.from({ length: 6 }).map((_, i) => (
               <Skeleton key={i} className="h-16 w-full" />
             ))}
           </div>
-        </div>
+        </Card>
 
         <div className="mt-6">
-          <Skeleton className="h-24 w-full rounded-lg" />
+          <Skeleton className="h-24 w-full rounded-2xl" />
         </div>
       </main>
     </div>

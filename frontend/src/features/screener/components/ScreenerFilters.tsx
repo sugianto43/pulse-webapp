@@ -1,5 +1,6 @@
 "use client";
 
+import Card from "@/components/Card";
 import type { ScreenPresetInfo } from "../types";
 
 const UNIVERSE_INFO: Record<string, string> = {
@@ -35,14 +36,14 @@ export default function ScreenerFilters({
   loading: boolean;
 }) {
   return (
-    <div className="flex flex-col gap-4 rounded-lg border border-zinc-200 bg-white p-4 dark:border-zinc-800 dark:bg-zinc-900">
+    <Card className="flex flex-col gap-4 p-4">
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <div>
           <label className="mb-1 block text-xs font-medium text-zinc-500">Universe</label>
           <select
             value={universe}
             onChange={(e) => onUniverseChange(e.target.value)}
-            className="w-full rounded-lg border border-zinc-300 bg-white px-3 py-2 text-black dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-50"
+            className="w-full rounded-xl border border-black/10 bg-white/80 px-3 py-2 text-black backdrop-blur-sm transition focus:border-zinc-400 focus:ring-2 focus:ring-zinc-200 focus:outline-none dark:border-white/10 dark:bg-zinc-900/60 dark:text-zinc-50 dark:focus:ring-zinc-700"
           >
             {Object.keys(UNIVERSE_INFO).map((u) => (
               <option key={u} value={u}>
@@ -69,13 +70,13 @@ export default function ScreenerFilters({
               value={criteria}
               onChange={(e) => onCriteriaChange(e.target.value)}
               placeholder="mis. rsi<30 and volume>1000000"
-              className="w-full rounded-lg border border-zinc-300 bg-white px-3 py-2 text-black dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-50"
+              className="w-full rounded-xl border border-black/10 bg-white/80 px-3 py-2 text-black backdrop-blur-sm transition focus:border-zinc-400 focus:ring-2 focus:ring-zinc-200 focus:outline-none dark:border-white/10 dark:bg-zinc-900/60 dark:text-zinc-50 dark:focus:ring-zinc-700"
             />
           ) : (
             <select
               value={preset}
               onChange={(e) => onPresetChange(e.target.value)}
-              className="w-full rounded-lg border border-zinc-300 bg-white px-3 py-2 text-black dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-50"
+              className="w-full rounded-xl border border-black/10 bg-white/80 px-3 py-2 text-black backdrop-blur-sm transition focus:border-zinc-400 focus:ring-2 focus:ring-zinc-200 focus:outline-none dark:border-white/10 dark:bg-zinc-900/60 dark:text-zinc-50 dark:focus:ring-zinc-700"
             >
               {presets.map((p) => (
                 <option key={p.value} value={p.value}>
@@ -90,10 +91,10 @@ export default function ScreenerFilters({
       <button
         onClick={onSubmit}
         disabled={loading || (useCustom && !criteria.trim())}
-        className="w-full rounded-lg bg-black px-4 py-2 font-medium text-white disabled:opacity-50 sm:w-auto dark:bg-zinc-50 dark:text-black"
+        className="w-full rounded-full bg-black px-4 py-2 font-medium text-white shadow-md shadow-black/10 transition hover:shadow-lg active:scale-[0.98] disabled:opacity-50 disabled:hover:shadow-md sm:w-auto dark:bg-zinc-50 dark:text-black dark:shadow-none"
       >
         {loading ? "Scanning..." : "Scan"}
       </button>
-    </div>
+    </Card>
   );
 }

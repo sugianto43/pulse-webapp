@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Card from "@/components/Card";
 
 export const metadata = {
   title: "Disclaimer — Pulse Web",
@@ -6,7 +7,7 @@ export const metadata = {
 
 export default function LegalPage() {
   return (
-    <div className="min-h-screen bg-zinc-50 p-4 sm:p-6 dark:bg-black">
+    <div className="min-h-screen p-4 sm:p-6">
       <main className="mx-auto max-w-2xl">
         <Link
           href="/"
@@ -19,7 +20,7 @@ export default function LegalPage() {
           Disclaimer
         </h1>
 
-        <div className="space-y-4 rounded-lg border border-zinc-200 bg-white p-5 text-sm text-zinc-700 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-300">
+        <Card className="space-y-4 p-5 text-sm text-zinc-700 dark:text-zinc-300">
           <p className="font-medium text-black dark:text-zinc-50">
             Pulse Web hanya untuk tujuan edukasi dan informasi.
           </p>
@@ -42,7 +43,7 @@ export default function LegalPage() {
             Pengembang tidak bertanggung jawab atas kerugian finansial dalam bentuk apa pun yang
             timbul dari penggunaan aplikasi ini.
           </p>
-        </div>
+        </Card>
       </main>
     </div>
   );
