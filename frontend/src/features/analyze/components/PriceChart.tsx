@@ -44,7 +44,7 @@ export default function PriceChart({ history }: { history: OHLCV[] }) {
         high: bar.high,
         low: bar.low,
         close: bar.close,
-      }))
+      })),
     );
 
     chart.timeScale().fitContent();

@@ -8,9 +8,7 @@ export default function Home() {
     <div className="flex min-h-screen flex-col items-center justify-center bg-zinc-50 p-6 dark:bg-black">
       <main className="w-full max-w-md text-center">
         <h1 className="mb-2 text-3xl font-semibold text-black dark:text-zinc-50">Pulse Web</h1>
-        <p className="mb-6 text-zinc-500">
-          Analisis teknikal saham IDX — cari ticker untuk mulai.
-        </p>
+        <p className="mb-6 text-zinc-500">Analisis teknikal saham IDX — cari ticker untuk mulai.</p>
         <SearchBox />
         <div className="mt-4 flex flex-wrap justify-center gap-2 text-sm">
           {POPULAR_TICKERS.map((t) => (

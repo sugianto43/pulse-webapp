@@ -4,7 +4,7 @@ import type { TradingPlanResponse } from "./types";
 export async function getTradingPlan(
   ticker: string,
   accountSize: number,
-  riskPercent: number
+  riskPercent: number,
 ): Promise<TradingPlanResponse> {
   const query = new URLSearchParams({
     account_size: String(accountSize),
@@ -13,6 +13,6 @@ export async function getTradingPlan(
 
   return apiFetch<TradingPlanResponse>(
     `/api/plan/${encodeURIComponent(ticker)}?${query.toString()}`,
-    `Gagal membuat trading plan untuk "${ticker}".`
+    `Gagal membuat trading plan untuk "${ticker}".`,
   );
 }

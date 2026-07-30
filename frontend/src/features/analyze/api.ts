@@ -9,6 +9,6 @@ export async function analyzeTicker(ticker: string): Promise<AnalyzeResponse> {
 
   return apiFetch<AnalyzeResponse>(
     `/api/analyze/${encodeURIComponent(clean)}`,
-    `Gagal memuat data untuk "${clean}".`
+    `Gagal memuat data untuk "${clean}".`,
   );
 }

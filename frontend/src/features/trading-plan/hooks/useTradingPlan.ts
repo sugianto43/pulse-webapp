@@ -24,7 +24,8 @@ export function useTradingPlan(ticker: string) {
 
   let error: string | null = null;
   if (query.isError) {
-    error = query.error instanceof ApiError ? query.error.message : "Terjadi kesalahan tak terduga.";
+    error =
+      query.error instanceof ApiError ? query.error.message : "Terjadi kesalahan tak terduga.";
   }
 
   return {

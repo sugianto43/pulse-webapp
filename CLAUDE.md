@@ -22,6 +22,10 @@ frontend/src/
     └── api-client.ts        # shared apiFetch<T>() + ApiError — the only fetch primitive
 ```
 
+HTTP client is **axios** (`lib/api-client.ts` wraps it), not native `fetch` — new feature `api.ts` files call `apiFetch<T>()`, never `axios`/`fetch` directly.
+
+Code style is enforced by **Prettier** (`frontend/.prettierrc.json`, includes `prettier-plugin-tailwindcss` for class sorting) — run `npm run format` before committing, `npm run format:check` in CI. ESLint's stylistic rules are disabled via `eslint-config-prettier` so the two never disagree.
+
 Rules:
 - A component/hook/type used by exactly one feature lives inside that feature's folder. It moves to root `components/`/`lib/` only once a second feature needs it — don't pre-emptively share.
 - `app/*/page.tsx` files stay thin: import from `features/`, compose, no fetch logic or business rules inline.

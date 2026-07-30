@@ -22,7 +22,10 @@ const columns = [
   columnHelper.accessor("ticker", {
     header: "Ticker",
     cell: (info) => (
-      <Link href={`/analyze/${info.getValue()}`} className="font-medium text-black underline decoration-zinc-300 hover:decoration-zinc-500 dark:text-zinc-50">
+      <Link
+        href={`/analyze/${info.getValue()}`}
+        className="font-medium text-black underline decoration-zinc-300 hover:decoration-zinc-500 dark:text-zinc-50"
+      >
         {info.getValue()}
       </Link>
     ),
@@ -37,7 +40,11 @@ const columns = [
       const v = info.getValue();
       const isUp = v >= 0;
       return (
-        <span className={isUp ? "text-emerald-600 dark:text-emerald-400" : "text-red-600 dark:text-red-400"}>
+        <span
+          className={
+            isUp ? "text-emerald-600 dark:text-emerald-400" : "text-red-600 dark:text-red-400"
+          }
+        >
           {isUp ? "+" : ""}
           {v.toFixed(2)}%
         </span>
@@ -95,7 +102,7 @@ export default function ScreenerTable({ data }: { data: ScreenResult[] }) {
                 <th
                   key={header.id}
                   onClick={header.column.getToggleSortingHandler()}
-                  className="cursor-pointer select-none whitespace-nowrap px-3 py-2 text-left font-medium text-zinc-500"
+                  className="cursor-pointer px-3 py-2 text-left font-medium whitespace-nowrap text-zinc-500 select-none"
                 >
                   {flexRender(header.column.columnDef.header, header.getContext())}
                   {{ asc: " ▲", desc: " ▼" }[header.column.getIsSorted() as string] ?? ""}
@@ -111,7 +118,10 @@ export default function ScreenerTable({ data }: { data: ScreenResult[] }) {
               className="border-b border-zinc-100 last:border-0 hover:bg-zinc-50 dark:border-zinc-900 dark:hover:bg-zinc-900/50"
             >
               {row.getVisibleCells().map((cell) => (
-                <td key={cell.id} className="whitespace-nowrap px-3 py-2 text-black dark:text-zinc-50">
+                <td
+                  key={cell.id}
+                  className="px-3 py-2 whitespace-nowrap text-black dark:text-zinc-50"
+                >
                   {flexRender(cell.column.columnDef.cell, cell.getContext())}
                 </td>
               ))}

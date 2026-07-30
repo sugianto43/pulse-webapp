@@ -8,11 +8,9 @@ export default function ScreenPage() {
   const screener = useScreener();
 
   return (
-    <div className="min-h-screen bg-zinc-50 p-4 dark:bg-black sm:p-6">
+    <div className="min-h-screen bg-zinc-50 p-4 sm:p-6 dark:bg-black">
       <main className="mx-auto max-w-4xl">
-        <h1 className="mb-1 text-2xl font-semibold text-black dark:text-zinc-50">
-          Screener Saham
-        </h1>
+        <h1 className="mb-1 text-2xl font-semibold text-black dark:text-zinc-50">Screener Saham</h1>
         <p className="mb-6 text-sm text-zinc-500">
           Saring saham IDX berdasarkan preset atau kriteria custom.
         </p>
