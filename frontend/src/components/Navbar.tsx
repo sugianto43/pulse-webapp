@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import Logo from "./Logo";
 
 const NAV_LINKS = [
   { href: "/screen", label: "Screener" },
@@ -14,11 +15,11 @@ export default function Navbar() {
   return (
     <header className="sticky top-0 z-20 border-b border-black/5 bg-white/60 backdrop-blur-xl dark:border-white/10 dark:bg-black/50">
       <div className="mx-auto flex max-w-4xl items-center justify-between gap-4 px-4 py-3 sm:px-6">
-        <Link
-          href="/"
-          className="shrink-0 text-lg font-semibold tracking-tight text-black dark:text-zinc-50"
-        >
-          Radar Saham
+        <Link href="/" className="flex shrink-0 items-center gap-2">
+          <Logo className="h-7 w-7" />
+          <span className="text-lg font-semibold tracking-tight text-black dark:text-zinc-50">
+            Radar Saham
+          </span>
         </Link>
         <nav className="flex flex-wrap gap-1">
           {NAV_LINKS.map((link) => {

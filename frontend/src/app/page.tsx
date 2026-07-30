@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Card from "@/components/Card";
+import Logo from "@/components/Logo";
 import SearchBox from "@/components/SearchBox";
 
 const POPULAR_TICKERS = ["BBCA", "BBRI", "TLKM", "ASII", "BMRI"];
@@ -8,9 +9,12 @@ export default function Home() {
   return (
     <div className="flex min-h-screen flex-col items-center justify-center p-6">
       <main className="w-full max-w-md text-center">
-        <h1 className="mb-2 text-4xl font-semibold tracking-tight text-black dark:text-zinc-50">
-          Radar Saham
-        </h1>
+        <div className="mb-2 flex items-center justify-center gap-3">
+          <Logo className="h-11 w-11" />
+          <h1 className="bg-linear-to-r from-emerald-600 to-blue-600 bg-clip-text text-4xl font-semibold tracking-tight text-transparent dark:from-emerald-400 dark:to-blue-400">
+            Radar Saham
+          </h1>
+        </div>
         <p className="mb-8 text-zinc-500">Analisis teknikal saham IDX — cari ticker untuk mulai.</p>
 
         <Card className="p-4">
