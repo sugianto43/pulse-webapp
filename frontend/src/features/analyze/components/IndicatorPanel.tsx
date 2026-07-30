@@ -1,4 +1,4 @@
-import type { TechnicalIndicators } from "@/lib/api";
+import type { TechnicalIndicators } from "../types";
 
 type Status = "bullish" | "bearish" | "neutral";
 

@@ -1,8 +1,9 @@
 "use client";
 
-import { useMutation, useQuery } from "@tanstack/react-query";
 import { useRef, useState } from "react";
-import { ApiError, getScreenPresets, screenStocks } from "@/lib/api";
+import { ApiError } from "@/lib/api-client";
+import { useScreenMutation } from "./useScreenMutation";
+import { useScreenPresetsQuery } from "./useScreenPresetsQuery";
 
 export function useScreener() {
   const [universe, setUniverse] = useState("lq45");
@@ -12,29 +13,21 @@ export function useScreener() {
   const [elapsedMs, setElapsedMs] = useState<number | null>(null);
   const startRef = useRef(0);
 
-  const presetsQuery = useQuery({
-    queryKey: ["screen-presets"],
-    queryFn: getScreenPresets,
-    staleTime: Infinity,
-  });
+  const presetsQuery = useScreenPresetsQuery();
 
-  const screenMutation = useMutation({
-    mutationFn: (vars: { universe: string; preset?: string; criteria?: string }) =>
-      screenStocks({ ...vars, limit: 30 }),
-    onMutate: () => {
-      startRef.current = performance.now();
-    },
-    onSettled: () => {
-      setElapsedMs(performance.now() - startRef.current);
-    },
-  });
+  const screenMutation = useScreenMutation();
+  const { mutate } = screenMutation;
 
   function runScreen() {
-    screenMutation.mutate({
-      universe,
-      preset: useCustom ? undefined : preset,
-      criteria: useCustom ? criteria : undefined,
-    });
+    startRef.current = performance.now();
+    mutate(
+      {
+        universe,
+        preset: useCustom ? undefined : preset,
+        criteria: useCustom ? criteria : undefined,
+      },
+      { onSettled: () => setElapsedMs(performance.now() - startRef.current) }
+    );
   }
 
   let error: string | null = null;

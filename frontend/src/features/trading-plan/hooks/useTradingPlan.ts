@@ -1,8 +1,8 @@
 "use client";
 
-import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
-import { ApiError, getTradingPlan } from "@/lib/api";
+import { ApiError } from "@/lib/api-client";
+import { useTradingPlanQuery } from "./useTradingPlanQuery";
 
 const DEFAULT_ACCOUNT_SIZE = 100_000_000;
 const DEFAULT_RISK_PERCENT = 2;
@@ -13,10 +13,7 @@ export function useTradingPlan(ticker: string) {
   const [accountSize, setAccountSize] = useState(DEFAULT_ACCOUNT_SIZE);
   const [riskPercent, setRiskPercent] = useState(DEFAULT_RISK_PERCENT);
 
-  const query = useQuery({
-    queryKey: ["trading-plan", ticker, accountSize, riskPercent],
-    queryFn: () => getTradingPlan(ticker, accountSize, riskPercent),
-  });
+  const query = useTradingPlanQuery(ticker, accountSize, riskPercent);
 
   function applyInputs() {
     const parsedAccountSize = Number(accountSizeInput);

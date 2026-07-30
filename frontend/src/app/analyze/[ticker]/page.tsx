@@ -1,8 +1,9 @@
 import Link from "next/link";
-import IndicatorPanel from "@/components/IndicatorPanel";
-import PriceChart from "@/components/PriceChart";
 import SearchBox from "@/components/SearchBox";
-import { ApiError, analyzeTicker } from "@/lib/api";
+import { analyzeTicker } from "@/features/analyze/api";
+import IndicatorPanel from "@/features/analyze/components/IndicatorPanel";
+import PriceChart from "@/features/analyze/components/PriceChart";
+import { ApiError } from "@/lib/api-client";
 
 export default async function AnalyzePage({
   params,
