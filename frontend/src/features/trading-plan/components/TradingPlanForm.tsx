@@ -29,7 +29,9 @@ export default function TradingPlanForm({
           />
         </div>
         <div>
-          <label className="mb-1 block text-xs font-medium text-zinc-500">Risk Tolerance (%)</label>
+          <label className="mb-1 block text-xs font-medium text-zinc-500">
+            Risk per Trade (% akun)
+          </label>
           <input
             type="number"
             min={0.1}
@@ -38,6 +40,10 @@ export default function TradingPlanForm({
             onChange={(e) => onRiskPercentChange(e.target.value)}
             className="w-full rounded-lg border border-zinc-300 bg-white px-3 py-2 text-black dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-50"
           />
+          <p className="mt-1 text-xs text-zinc-500">
+            Mengatur jumlah lot (Position Sizing), bukan level Stop Loss — SL dihitung teknikal dari
+            ATR/support.
+          </p>
         </div>
       </div>
 
