@@ -92,6 +92,20 @@
 
 ---
 
+## Fase 8 — Automated Test Suite
+
+Ditambahkan di luar rencana awal PRD — sebelum Fase 7, seluruh proyek nol automated test (hanya manual `tsc`/`eslint`/curl per fase). Gap ini ditemukan saat retrospektif "apa langkah selanjutnya" setelah Fase 7 selesai.
+
+- [x] Setup pytest di backend (`pytest.ini`, `tests/conftest.py` dengan `TestClient` + rate-limiter reset per test).
+- [x] Test `app/serializers.py` (`clean_nan_deep`) dan `app/cache.py` (`TTLCache`) — pure logic, 12 test.
+- [x] Test semua router (`analyze`, `screen`, `plan`, `sapta`, `broker`) dengan Pulse-CLI engine di-mock (`monkeypatch` + `AsyncMock`) — termasuk regression guard untuk bug route-ordering `/sapta/scan` vs `/sapta/{ticker}` dari Fase 5. 26 test.
+- [x] Setup Vitest di frontend (`vitest.config.ts` pakai `resolve.tsconfigPaths` native, `@testing-library/react`, `jsdom`), shared `createQueryClientWrapper` di `src/test/react-query.tsx`.
+- [x] Test granular hooks (query/mutation, satu per fitur: screener/sapta/trading-plan/broker/ai-insight) dan composing hooks (`useScreener`, `useSaptaScan`, `useTradingPlan`) — 20 test, meng-cover sukses, error mapping ke pesan `ApiError`, dan parameter yang di-forward ke `api.ts`.
+
+**DoD:** `pytest` (backend) dan `vitest run` (frontend) hijau, jadi regresi di router/hook logic tertangkap otomatis, bukan cuma lewat review manual.
+
+---
+
 ## Risiko Perlu Keputusan Awal (Section 7 PRD)
 
 - Rate limit Yahoo Finance saat screening 900+ saham → mitigasi: caching agresif (TTL 1 jam), batch processing.
