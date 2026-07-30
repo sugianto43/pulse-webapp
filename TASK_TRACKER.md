@@ -63,10 +63,10 @@
 
 ## Fase 5 — SAPTA (Pre-markup Detection)
 
-- [ ] Buat endpoint `/api/sapta/{ticker}`, wrap engine + model `.pkl` yang sudah ada. Output skor + breakdown 6 modul.
-- [ ] Buat halaman detail SAPTA dengan visualisasi skor (radial gauge, bar chart breakdown modul).
-- [ ] Buat fitur scan multi-saham (LQ45/IDX80/dst) dengan progress indicator.
-- [ ] Buat dokumentasi metodologi SAPTA untuk user (tooltip/halaman "Cara Kerja SAPTA").
+- [x] Buat endpoint `/api/sapta/{ticker}`, wrap engine + model `.pkl` yang sudah ada. Output skor + breakdown 6 modul. — reuse `SaptaEngine`, Broker Flow (modul 7) di-disable (butuh Stockbit, Fase 6).
+- [x] Buat halaman detail SAPTA dengan visualisasi skor (radial gauge, bar chart breakdown modul). — `SaptaScoreGauge` (SVG) + `SaptaModuleBreakdown`.
+- [x] Buat fitur scan multi-saham (LQ45/IDX80/dst) dengan progress indicator. — `/sapta`, indikator "sedang scan" + elapsed time.
+- [x] Buat dokumentasi metodologi SAPTA untuk user (tooltip/halaman "Cara Kerja SAPTA"). — `SaptaMethodologyInfo` (accordion).
 
 **DoD:** User bisa scan LQ45 untuk kandidat pre-markup dan lihat breakdown skor per saham secara visual.
 
