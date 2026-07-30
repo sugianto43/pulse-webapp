@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import { CandlestickSeries, ColorType, createChart, type IChartApi } from "lightweight-charts";
-import type { OHLCV } from "@/lib/api";
+import type { OHLCV } from "../types";
 
 export default function PriceChart({ history }: { history: OHLCV[] }) {
   const containerRef = useRef<HTMLDivElement>(null);

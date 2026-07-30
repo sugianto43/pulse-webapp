@@ -10,7 +10,7 @@ import {
 } from "@tanstack/react-table";
 import { useState } from "react";
 import Link from "next/link";
-import type { ScreenResult } from "@/lib/api";
+import type { ScreenResult } from "../types";
 
 const columnHelper = createColumnHelper<ScreenResult>();
 

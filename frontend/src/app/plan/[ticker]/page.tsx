@@ -2,9 +2,9 @@
 
 import { useParams } from "next/navigation";
 import SearchBox from "@/components/SearchBox";
-import TradingPlanCard from "@/components/TradingPlanCard";
-import TradingPlanForm from "@/components/TradingPlanForm";
-import { useTradingPlan } from "@/hooks/useTradingPlan";
+import TradingPlanCard from "@/features/trading-plan/components/TradingPlanCard";
+import TradingPlanForm from "@/features/trading-plan/components/TradingPlanForm";
+import { useTradingPlan } from "@/features/trading-plan/hooks/useTradingPlan";
 
 export default function PlanPage() {
   const params = useParams<{ ticker: string }>();

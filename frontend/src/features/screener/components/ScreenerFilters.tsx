@@ -1,6 +1,6 @@
 "use client";
 
-import type { ScreenPresetInfo } from "@/lib/api";
+import type { ScreenPresetInfo } from "../types";
 
 const UNIVERSE_INFO: Record<string, string> = {
   lq45: "~45 saham — cepat",

@@ -1,4 +1,4 @@
-import type { TradingPlanResponse } from "@/lib/api";
+import type { TradingPlanResponse } from "../types";
 
 function fmtRp(n: number): string {
   return `Rp ${n.toLocaleString("id-ID", { maximumFractionDigits: 0 })}`;

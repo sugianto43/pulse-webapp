@@ -1,0 +1,67 @@
+export type OHLCV = {
+  date: string;
+  open: number;
+  high: number;
+  low: number;
+  close: number;
+  volume: number;
+};
+
+export type StockPrice = {
+  ticker: string;
+  name: string | null;
+  sector: string | null;
+  industry: string | null;
+  current_price: number;
+  previous_close: number;
+  change: number;
+  change_percent: number;
+  volume: number;
+  avg_volume: number;
+  day_low: number;
+  day_high: number;
+  week_52_low: number;
+  week_52_high: number;
+  market_cap: number | null;
+  shares_outstanding: number | null;
+  history: OHLCV[];
+  fetched_at: string;
+};
+
+export type TechnicalIndicators = {
+  ticker: string;
+  calculated_at: string;
+  sma_20: number | null;
+  sma_50: number | null;
+  sma_200: number | null;
+  ema_9: number | null;
+  ema_21: number | null;
+  ema_55: number | null;
+  rsi_14: number | null;
+  macd: number | null;
+  macd_signal: number | null;
+  macd_histogram: number | null;
+  stoch_k: number | null;
+  stoch_d: number | null;
+  bb_upper: number | null;
+  bb_middle: number | null;
+  bb_lower: number | null;
+  bb_width: number | null;
+  atr_14: number | null;
+  obv: number | null;
+  vwap: number | null;
+  mfi_14: number | null;
+  volume_sma_20: number | null;
+  support_1: number | null;
+  support_2: number | null;
+  resistance_1: number | null;
+  resistance_2: number | null;
+  trend: "Bullish" | "Bearish" | "Sideways";
+  signal: "Strong Buy" | "Buy" | "Neutral" | "Sell" | "Strong Sell";
+};
+
+export type AnalyzeResponse = {
+  ticker: string;
+  price: StockPrice;
+  indicators: TechnicalIndicators;
+};

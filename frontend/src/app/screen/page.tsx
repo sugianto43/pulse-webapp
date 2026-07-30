@@ -1,8 +1,8 @@
 "use client";
 
-import ScreenerFilters from "@/components/ScreenerFilters";
-import ScreenerTable from "@/components/ScreenerTable";
-import { useScreener } from "@/hooks/useScreener";
+import ScreenerFilters from "@/features/screener/components/ScreenerFilters";
+import ScreenerTable from "@/features/screener/components/ScreenerTable";
+import { useScreener } from "@/features/screener/hooks/useScreener";
 
 export default function ScreenPage() {
   const screener = useScreener();
