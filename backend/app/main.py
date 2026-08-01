@@ -11,7 +11,7 @@ from sentry_sdk.integrations.fastapi import FastApiIntegration
 from sentry_sdk.integrations.starlette import StarletteIntegration
 
 from app.rate_limit import RateLimitExceeded, SlowAPIMiddleware, _rate_limit_exceeded_handler, limiter
-from app.routers import analyze, broker, plan, sapta, screen
+from app.routers import analyze, broker, plan, predict, sapta, screen
 from app.settings import CORS_ORIGINS, SENTRY_DSN, SENTRY_TRACES_SAMPLE_RATE, THREAD_POOL_WORKERS
 
 sentry_sdk.init(
@@ -49,6 +49,7 @@ app.add_middleware(
 app.include_router(analyze.router)
 app.include_router(broker.router)
 app.include_router(plan.router)
+app.include_router(predict.router)
 app.include_router(sapta.router)
 app.include_router(screen.router)
 

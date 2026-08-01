@@ -30,6 +30,11 @@ SCREEN_CACHE_MAX_SIZE = int(os.getenv("PULSE_WEB_SCREEN_CACHE_MAX_SIZE", "256"))
 SAPTA_SCAN_CACHE_TTL_SECONDS = int(os.getenv("PULSE_WEB_SAPTA_SCAN_CACHE_TTL", "3600"))
 SAPTA_SCAN_CACHE_MAX_SIZE = int(os.getenv("PULSE_WEB_SAPTA_SCAN_CACHE_MAX_SIZE", "64"))
 
+# Prediction is daily-cadence (next-day action) — result doesn't change until
+# tomorrow's candle closes, so this can cache far longer than screen/sapta.
+PREDICT_CACHE_TTL_SECONDS = int(os.getenv("PULSE_WEB_PREDICT_CACHE_TTL", "21600"))
+PREDICT_CACHE_MAX_SIZE = int(os.getenv("PULSE_WEB_PREDICT_CACHE_MAX_SIZE", "256"))
+
 # Empty/unset disables the SDK (sentry_sdk.init no-ops with dsn=None) — safe
 # default for local dev without a Sentry account.
 SENTRY_DSN = os.getenv("SENTRY_DSN") or None

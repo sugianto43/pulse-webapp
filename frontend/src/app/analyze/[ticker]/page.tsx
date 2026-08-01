@@ -6,6 +6,7 @@ import { analyzeTicker } from "@/features/analyze/api";
 import IndicatorPanel from "@/features/analyze/components/IndicatorPanel";
 import PriceChart from "@/features/analyze/components/PriceChart";
 import AiInsightCard from "@/features/ai-insight/components/AiInsightCard";
+import PredictionCard from "@/features/predict/components/PredictionCard";
 import { ApiError } from "@/lib/api-client";
 import {
   MACD_TERM,
@@ -62,6 +63,10 @@ export default async function AnalyzePage({ params }: { params: Promise<{ ticker
               {price.change.toLocaleString("id-ID")} ({price.change_percent.toFixed(2)}%)
             </div>
           </div>
+        </div>
+
+        <div className="mt-6">
+          <PredictionCard ticker={price.ticker} />
         </div>
 
         <Card className="mt-6 p-2 sm:p-4">
